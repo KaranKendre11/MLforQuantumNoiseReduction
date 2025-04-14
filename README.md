@@ -9,7 +9,7 @@ As noise is a fundamental issue with NISQ devices, error mitigation is necessary
 Our research proposes a machine learning–aided approach to reduce quantum noise by learning the patterns of noise and reconstructing clean quantum states from noisy data. We formulate it as a supervised learning task with the goal of converting a noisy density matrix to its clean representation, and we achieve this using a fidelity-aware loss and CNN-based autoencoder architecture. We show how data-driven approaches can improve reconstruction accuracy. 
 
 2. **Methods** 
-1. **Quantum Circuit Generation and Density Matrix Extraction** 
+**2.1 Quantum Circuit Generation and Density Matrix Extraction** 
 
 We randomly generate quantum circuits with 5 qubits from the Cirq library. The circuits are  
 
@@ -19,7 +19,7 @@ After obtaining the circuit, we get the final state density matrix through Cirq'
 
 all the quantum information including entanglement and decoherence effects. 
 
-2. **Noise Modelling** 
+**2.2 Noise Modelling** 
 
 We apply five different types of noise channels: 
 
@@ -31,7 +31,7 @@ We apply five different types of noise channels:
 
 Noise levels tested: 0.05, 0.10, 0.15, 0.20 
 
-3. **CNN Autoencoder Architecture** 
+**2.3 CNN Autoencoder Architecture** 
 
 We model noise reduction using a deep convolutional autoencoder. The input is a noisy density matrix split into real and imaginary parts with shape (32, 32, 2). The output is a reconstruction of the clean matrix. 
 
@@ -51,7 +51,7 @@ Where || · ||F is the Frobenius norm , and i ⟨ρ, σ⟩s the element-wise com
 
 The inclusion of fidelity in the loss function forces the model to capture structural quantum similarities, not just pixel-wise reconstruction errors. 
 
-4. **Dataset Pipeline** 
+**2.4 Dataset Pipeline** 
 - 10,000 circuit samples 
 - Each sample: clean DM, noisy DM, noise type, and level 
 - Data split: 80% training, 20% testing 
@@ -146,7 +146,7 @@ Our CNN-based quantum error correction model demonstrated strong performance acr
 
 ![](readme_data/Aspose.Words.7d03d968-c2c7-45eb-a592-cc7d87afad00.006.jpeg)
 
-1. **Overall Fidelity Improvement** 
+**8.1 Overall Fidelity Improvement** 
 
 Fidelity comparisons by noise type and level, demonstrating significant improvements across all conditions. The model increased quantum state fidelity from an average of 0.298 (noisy) to 0.774 (corrected), representing an average improvement of 0.47. 
 
@@ -154,7 +154,7 @@ Fidelity comparisons by noise type and level, demonstrating significant improvem
 
 The fidelity improvement distribution shows most improvements clustered around 0.5-0.6, with some exceptional cases exceeding 0.8 improvement and a small number of negative cases. 
 
-2. **Performance by Noise Type** 
+**8.2 Performance by Noise Type** 
 
 ![](readme_data/Aspose.Words.7d03d968-c2c7-45eb-a592-cc7d87afad00.008.png)
 
@@ -163,11 +163,11 @@ Key findings include:
 1. Mixed noise shows the highest corrected fidelity (0.807) and improvement (0.567). 
 1. Phase damping shows the lowest improvement (0.241), despite starting with the highest noisy fidelity. 
 1. Bit-flip noise demonstrates exceptional cases with improvements up to 0.84. 
-3. **Performance by Noise Level** 
+**8.3 Performance by Noise Level** 
 
 ![](readme_data/Aspose.Words.7d03d968-c2c7-45eb-a592-cc7d87afad00.009.png)Interestingly, higher noise levels (0.15, 0.20) show greater improvement than lower levels, indicating the model is particularly effective at correcting severely corrupted states. 
 
-4. **Density Matrix Visualization**
+**8.4 Density Matrix Visualization**
 
 ![](readme_data/Aspose.Words.7d03d968-c2c7-45eb-a592-cc7d87afad00.010.jpeg)
 
