@@ -1,6 +1,6 @@
 ﻿# MACHINE LEARNING FOR QUANTUM NOISE REDUCTION
 
-1. **Introduction ![](readme_data/Aspose.Words.7d03d968-c2c7-45eb-a592-cc7d87afad00.002.png)**
+1. **Introduction**
 
 Quantum computation has the potential for exponential speedup of classical systems in some applications, such as cryptography, simulation of molecular behavior, and optimization. Nevertheless, quantum noise drastically limits the utility of quantum computation. Qubits, the fundamental units of quantum information, are very sensitive to gate errors and environmental interference. Quantum noise introduces errors that cause errors in quantum computations, as they travel onward over time. 
 
@@ -9,6 +9,7 @@ As noise is a fundamental issue with NISQ devices, error mitigation is necessary
 Our research proposes a machine learning–aided approach to reduce quantum noise by learning the patterns of noise and reconstructing clean quantum states from noisy data. We formulate it as a supervised learning task with the goal of converting a noisy density matrix to its clean representation, and we achieve this using a fidelity-aware loss and CNN-based autoencoder architecture. We show how data-driven approaches can improve reconstruction accuracy. 
 
 2. **Methods** 
+
 **2.1 Quantum Circuit Generation and Density Matrix Extraction** 
 
 We randomly generate quantum circuits with 5 qubits from the Cirq library. The circuits are  
@@ -56,6 +57,7 @@ The inclusion of fidelity in the loss function forces the model to capture struc
 - Each sample: clean DM, noisy DM, noise type, and level 
 - Data split: 80% training, 20% testing 
 - Preprocessing: split real and imaginary parts into 2 channels 
+
 3. **Dataset and Related Work Dataset** 
 
    We generated a synthetic dataset consisting of 10,000 density matrices derived from random quantum circuits. This approach allows us to have perfect ground truth for evaluation and control over noise parameters, which is challenging with real quantum hardware data. The dataset has the following characteristics: 
