@@ -1,6 +1,6 @@
-﻿![](Aspose.Words.7d03d968-c2c7-45eb-a592-cc7d87afad00.001.png)
+﻿# MACHINE LEARNING FOR QUANTUM NOISE REDUCTION
 
-1. **Introduction ![](Aspose.Words.7d03d968-c2c7-45eb-a592-cc7d87afad00.002.png)**
+1. **Introduction ![](readme_data/Aspose.Words.7d03d968-c2c7-45eb-a592-cc7d87afad00.002.png)**
 
 Quantum computation has the potential for exponential speedup of classical systems in some applications, such as cryptography, simulation of molecular behavior, and optimization. Nevertheless, quantum noise drastically limits the utility of quantum computation. Qubits, the fundamental units of quantum information, are very sensitive to gate errors and environmental interference. Quantum noise introduces errors that cause errors in quantum computations, as they travel onward over time. 
 
@@ -98,13 +98,13 @@ Their approach demonstrates use of the variational circuits for error correction
 
 We constructed a synthetic data set of 10,000 density matrices that we derived from randomly created quantum circuits to examine the different types of noise and levels that influence quantum states. Having simulated clean as well as noisy circuits, we were able to create perfect ground truth data to train and test on. Through our data analysis, we found a number of important observations concerning the dynamics of quantum noise and its impact on quantum state fidelity. 
 
-![](Aspose.Words.7d03d968-c2c7-45eb-a592-cc7d87afad00.003.jpeg)
+![](readme_data/Aspose.Words.7d03d968-c2c7-45eb-a592-cc7d87afad00.003.jpeg)
 
 Fidelity distribution analysis across noise types revealed that phase damping noise preserves state fidelity more than any other noise type with a mean noisy fidelity of 0.541, and bit-flip was most destructive (0.200 mean fidelity). This is due to the fact that the phase damping type of noise primarily disturbs off-diagonal elements (coherences) but preserves populations, whereas bit-flip destroys computational basis states directly. 
 
 The noise level-state fidelity relationship is approximately inversely dependent, such that the greater the noise level, the exponentially smaller the fidelity. This can be quantified by the -0.55 correlation coefficient of noise level-noisy fidelity in our correlation analysis below: 
 
-![](Aspose.Words.7d03d968-c2c7-45eb-a592-cc7d87afad00.004.jpeg)
+![](readme_data/Aspose.Words.7d03d968-c2c7-45eb-a592-cc7d87afad00.004.jpeg)
 
 We observed that quantum states that were exposed to mixed noise exhibited complex error patterns that had elements of multiple noise channels. This is an especially challenging scenario for classical quantum error correction schemes but presents an opportunity for machine learning approaches that can learn and discover such complex patterns. 
 
@@ -136,7 +136,7 @@ We used an 80/20 train-test split to guarantee unbiased testing, with the split 
 
 The training was conducted on an NVIDIA Tesla V100 GPU, with one epoch taking approximately 27 seconds. The model converged at approximately 95 epochs, as shown in the learning curves and the training logs: 
 
-![](Aspose.Words.7d03d968-c2c7-45eb-a592-cc7d87afad00.005.jpeg)
+![](readme_data/Aspose.Words.7d03d968-c2c7-45eb-a592-cc7d87afad00.005.jpeg)
 
 For evaluation, we calculated quantum state fidelity between the noiseless initial states, noisy states, and CNN-corrected states. We also experimented with different types of noise and levels of noise to see trends and limits in model correction performance. The experiment code and data generating scripts are available on our GitHub repository 
 
@@ -144,19 +144,19 @@ For evaluation, we calculated quantum state fidelity between the noiseless initi
 
 Our CNN-based quantum error correction model demonstrated strong performance across various noise types and levels. After 100 training epochs, the model achieved a test loss of 0.1519 and test MAE of 0.0094, indicating good prediction accuracy. 
 
-![](Aspose.Words.7d03d968-c2c7-45eb-a592-cc7d87afad00.006.jpeg)
+![](readme_data/Aspose.Words.7d03d968-c2c7-45eb-a592-cc7d87afad00.006.jpeg)
 
 1. **Overall Fidelity Improvement** 
 
 Fidelity comparisons by noise type and level, demonstrating significant improvements across all conditions. The model increased quantum state fidelity from an average of 0.298 (noisy) to 0.774 (corrected), representing an average improvement of 0.47. 
 
-![](Aspose.Words.7d03d968-c2c7-45eb-a592-cc7d87afad00.007.jpeg)
+![](readme_data/Aspose.Words.7d03d968-c2c7-45eb-a592-cc7d87afad00.007.jpeg)
 
 The fidelity improvement distribution shows most improvements clustered around 0.5-0.6, with some exceptional cases exceeding 0.8 improvement and a small number of negative cases. 
 
 2. **Performance by Noise Type** 
 
-![](Aspose.Words.7d03d968-c2c7-45eb-a592-cc7d87afad00.008.png)
+![](readme_data/Aspose.Words.7d03d968-c2c7-45eb-a592-cc7d87afad00.008.png)
 
 Key findings include: 
 
@@ -165,11 +165,11 @@ Key findings include:
 1. Bit-flip noise demonstrates exceptional cases with improvements up to 0.84. 
 3. **Performance by Noise Level** 
 
-![](Aspose.Words.7d03d968-c2c7-45eb-a592-cc7d87afad00.009.png)Interestingly, higher noise levels (0.15, 0.20) show greater improvement than lower levels, indicating the model is particularly effective at correcting severely corrupted states. 
+![](readme_data/Aspose.Words.7d03d968-c2c7-45eb-a592-cc7d87afad00.009.png)Interestingly, higher noise levels (0.15, 0.20) show greater improvement than lower levels, indicating the model is particularly effective at correcting severely corrupted states. 
 
 4. **Density Matrix Visualization**
 
-![](Aspose.Words.7d03d968-c2c7-45eb-a592-cc7d87afad00.010.jpeg)
+![](readme_data/Aspose.Words.7d03d968-c2c7-45eb-a592-cc7d87afad00.010.jpeg)
 
 Visualization of original, noisy, and corrected density matrices. The model successfully recovers both diagonal elements (populations) and off-diagonal elements (coherences) from heavily corrupted noisy states. 
 
