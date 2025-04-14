@@ -1,6 +1,6 @@
-﻿# MACHINE LEARNING FOR QUANTUM NOISE REDUCTION
+﻿# MACHINE LEARNING FOR QUANTUM NOISE REDUCTION USING DENSITY MATRIX
 
-1. **Introduction**
+**1. Introduction**
 
 Quantum computation has the potential for exponential speedup of classical systems in some applications, such as cryptography, simulation of molecular behavior, and optimization. Nevertheless, quantum noise drastically limits the utility of quantum computation. Qubits, the fundamental units of quantum information, are very sensitive to gate errors and environmental interference. Quantum noise introduces errors that cause errors in quantum computations, as they travel onward over time. 
 
@@ -8,7 +8,7 @@ As noise is a fundamental issue with NISQ devices, error mitigation is necessary
 
 Our research proposes a machine learning–aided approach to reduce quantum noise by learning the patterns of noise and reconstructing clean quantum states from noisy data. We formulate it as a supervised learning task with the goal of converting a noisy density matrix to its clean representation, and we achieve this using a fidelity-aware loss and CNN-based autoencoder architecture. We show how data-driven approaches can improve reconstruction accuracy. 
 
-2. **Methods** 
+**2. Methods** 
 
 **2.1 Quantum Circuit Generation and Density Matrix Extraction** 
 
@@ -58,7 +58,7 @@ The inclusion of fidelity in the loss function forces the model to capture struc
 - Data split: 80% training, 20% testing 
 - Preprocessing: split real and imaginary parts into 2 channels 
 
-3. **Dataset and Related Work Dataset** 
+**3. Dataset and Related Work Dataset** 
 
    We generated a synthetic dataset consisting of 10,000 density matrices derived from random quantum circuits. This approach allows us to have perfect ground truth for evaluation and control over noise parameters, which is challenging with real quantum hardware data. The dataset has the following characteristics: 
 
@@ -84,7 +84,7 @@ Krastanov et al. [4] applied neural networks to decoding of surface codes with e
 
 Our CNN-based method updates these earlier papers by addressing density matrix reconstruction for multiple noise models simultaneously. Unlike traditional QECCs with a dense qubit overhead, our scheme operates on the existing quantum state without encoding. And unlike statistical error mitigation techniques, we reconstruct the full quantum state rather than merely expectation values of observables. 
 
-4. **Related Implementations** 
+**4. Related Implementations** 
 
 The application of quantum error correction techniques via machine learning has been of interest on other research platforms. We reviewed some of the associated implementations to contrast and compare our approach: 
 
@@ -96,7 +96,7 @@ The TensorFlow Quantum [7] software includes demonstrations of quantum encoding 
 
 Their approach demonstrates use of the variational circuits for error correction and has promising results for some noise models. Unfortunately, their application does require quantum resources for both the encoding and the correction. Our traditional CNN protocol performs as well or better without requiring more quantum resources for the correction step, making it directly applicable to current quantum hardware and more scalable for increasing system size. 
 
-5. **Data Analysis** 
+**5. Data Analysis** 
 
 We constructed a synthetic data set of 10,000 density matrices that we derived from randomly created quantum circuits to examine the different types of noise and levels that influence quantum states. Having simulated clean as well as noisy circuits, we were able to create perfect ground truth data to train and test on. Through our data analysis, we found a number of important observations concerning the dynamics of quantum noise and its impact on quantum state fidelity. 
 
@@ -116,7 +116,7 @@ The data allowed us to explore the relation of early noisy fidelity with theoret
 
 models and strengths. 
 
-6. **Analysis** 
+**6. Analysis** 
 
 Our CNN-based approach's strong performance on many types and levels of noise is due to several key features of the model and quantum noise itself. The encoder-decoder architecture is particularly suited to quantum error correction since it has the ability to learn features at multiple hierarchical scales, reflecting the manner in which quantum noise acts at both the local and global levels.** 
 
@@ -128,7 +128,7 @@ The restrictions observed with phase damping correction are likely a result of i
 
 The CNN's ability to preserve quantum correlations, observed through off-diagonal density matrix elements' revival, demonstrates that such a procedure would be particularly worthwhile for entanglement and quantum coherence-intensive quantum algorithms like Shor's algorithm or quantum simulation. The preservation of quantum information distinguishes our approach from other classical error mitigation techniques that only operate on expectation values. 
 
-7. **Experimental Setup** 
+**7. Experimental Setup** 
 
 Our testbed consisted of an end-to-end pipeline for simulating synthetic quantum data, training the CNN model, and evaluating its performance across different noise regimes. We used the Cirq quantum computing library to implement the circuit simulation and TensorFlow for modelling the neural network. 
 
@@ -142,7 +142,7 @@ The training was conducted on an NVIDIA Tesla V100 GPU, with one epoch taking ap
 
 For evaluation, we calculated quantum state fidelity between the noiseless initial states, noisy states, and CNN-corrected states. We also experimented with different types of noise and levels of noise to see trends and limits in model correction performance. The experiment code and data generating scripts are available on our GitHub repository 
 
-8. **Results** 
+**8. Results** 
 
 Our CNN-based quantum error correction model demonstrated strong performance across various noise types and levels. After 100 training epochs, the model achieved a test loss of 0.1519 and test MAE of 0.0094, indicating good prediction accuracy. 
 
@@ -175,7 +175,7 @@ Key findings include:
 
 Visualization of original, noisy, and corrected density matrices. The model successfully recovers both diagonal elements (populations) and off-diagonal elements (coherences) from heavily corrupted noisy states. 
 
-9. **Conclusion** 
+**9. Conclusion** 
 
 This work demonstrates the effectiveness of CNN-based quantum error correction in density matrix reconstruction. Our model provides high fidelity improvements on various types of noise and intensities, with extremely favourable outcomes for complex mixed noise and higher intensities of noise, demonstrating deep learning techniques as a plausible scaling option to traditional quantum error correction codes. 
 
@@ -183,15 +183,22 @@ For application in real-world scenarios, we propose using this method in mixed n
 
 Future work should focus on breaking the phase damping limit, hardware validation on real quantum devices, and scaling to more qubits. As quantum hardware capability increases, this approach can be extended to more complex quantum algorithms and error models, which could result in practical quantum advantage with fewer physical qubits than traditional error correction methods would. 
 
-10. **References** 
+**10. References** 
+
 [1]. P. Czarnik, A. Arrasmith, P.J. Coles, S.M. Leichenauer. Error mitigation with Clifford quantum-circuit data. Quantum, 5:592, 2021.[ https://quantum-journal.org/papers/q-2021-11-26-592/ ](https://quantum-journal.org/papers/q-2021-11-26-592/)
+
 [2]. H. Chen, L. Wossnig, S. Severini, H. Neven, M. Mohseni. Universal discriminative quantum neural networks. Quantum Machine Intelligence, 3(1), 2021.[ https://link.springer.com/article/10.1007/s42484- 020-00025-7 ](https://link.springer.com/article/10.1007/s42484-020-00025-7)
+
 [3]. K. Endo, S. Benjamin, Y. Li. Practical quantum error mitigation for near-future applications. Physical Review X, 8:031027, 2018.[ https://journals.aps.org/prx/abstract/10.1103/PhysRevX.8.031027 ](https://journals.aps.org/prx/abstract/10.1103/PhysRevX.8.031027)
+
 [4]. S. Krastanov, L. Jiang, D. Englund, S. Guha. Neural-network decoder for topological color codes with circuit level noise. In *Proceedings of the 34th Annual Conference on Neural Information Processing Systems (NeurIPS 2020)*, 2020. [https://proceedings.neurips.cc/paper/2020/hash/37bc6f5b7952a45e3f4e1170d494b140-Abstract.html ](https://proceedings.neurips.cc/paper/2020/hash/37bc6f5b7952a45e3f4e1170d494b140-Abstract.html)
+
 [5]. Abraham, H., et al. (2023). Qiskit Textbook - Error Correction with the Repetition Code. Available at: [https://qiskit.org/textbook/ch-quantum-hardware/error-correction-repetition-code.html ](https://qiskit.org/textbook/ch-quantum-hardware/error-correction-repetition-code.html)
+
 [6]. Ryan LaRose, Andrea Mari, Nathan Shammah, et al. Mitiq: A software package for error mitigation on noisy quantum computers. Quantum, 6:774, 2022. GitHub:[ https://github.com/unitaryfund/mitiq ](https://github.com/unitaryfund/mitiq)DOI:[ https://doi.org/10.22331/q-2022-08-11-774 ](https://doi.org/10.22331/q-2022-08-11-774)
+
 [7]. M. Broughton, G. Verdon, T. McCourt, et al. TensorFlow Quantum: A Software Framework for Quantum Machine Learning. arXiv:2003.02989, 2020. Tutorial: [https://www.tensorflow.org/quantum/tutorials/quantum_data ](https://www.tensorflow.org/quantum/tutorials/quantum_data)Paper:[ https://arxiv.org/abs/2003.02989 ](https://arxiv.org/abs/2003.02989)
 
-11. **Appendix:** 
+**11. Appendix:** 
 
 1\. GitHub repository link:[ https://github.com/KaranKendre11/MLforQuantumNoiseReduction/tree/main ](https://github.com/KaranKendre11/MLforQuantumNoiseReduction/tree/main)
